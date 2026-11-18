@@ -6,8 +6,11 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-adguardhome
-PKG_VERSION:=1.8-20221120
-PKG_RELEASE:=1
+# apk（OpenWrt 25.12+）版本号只允许 <version>-r<release> 一个连字符。
+# 原写法 1.8-20221120 + RELEASE 1 生成 1.8-20221120-r1，apk 判为非法版本而构建失败。
+# 改为 1.8 + r20221120，opkg 与 apk 都能接受。
+PKG_VERSION:=1.8
+PKG_RELEASE:=20221120
 PKG_MAINTAINER:=<https://github.com/rufengsuixing/luci-app-adguardhome>
 
 LUCI_TITLE:=LuCI app for adguardhome
